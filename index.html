@@ -1,0 +1,75 @@
+<!-- @copyright
+Tarun Chaudhary 
+B tech (EE)
+IIT Rajasthan
+tarun29061990@gmail.com
+
+tarun29061990@github*/-->
+
+
+<!doctype html>
+<html>
+<head>
+	<title>Thought Search Engine</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="normalize.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://cloud.github.com/downloads/emberjs/ember.js/ember-0.9.6.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div id="main">
+		
+	<script type="text/x-handlebars">
+		<div id="frm">
+			<h id="startingtext">Load Tweets for </h>
+			<div id="textField">{{view App.SearchTextField placeholder="Search Keyword" valueBinding="App.searchResultsController.query"}}</div>
+			<h id="text">having</h>
+			<div id="select">{{view Ember.Select
+        		contentBinding="App.selectedOptionController"
+        		optionLabelPath="content.name"
+        		optionValuePath="content.id"
+        		selectionBinding="App.currentOption.valueOption"
+    			}}
+    		<h id="text2">Attitude</h>
+         	</div>
+
+			<button {{action "refresh" target="App.searchResultsController"}}>Go!</button>
+
+			{{#each App.masterController}}
+			<a {{bindAttr href="facebook_url"}}>
+			<img {{bindAttr src="me_url"}} height="40px" width="40px" alt="me"/>
+			</a>
+			{{/each}}
+			<h>
+			<p>Created By Tarun Chaudhary (tarun29061990@gmail.com)</p>
+
+			</h>
+		</div>
+
+		<div id="example_text">
+			<p><b>For Eg:</b> Load Tweets for <b>"me"</b> having <b>"normal/positive/negative"</b>    attitude</p>
+		</div>
+		<div id="content">
+			
+			<div id="tweets">
+				<h3>Tweets</h3> 
+				<ul>
+					{{#each App.searchResultsController.reverse}}
+						<li>
+							<img {{bindAttr src="profile_image_url"}} alt="pic" />
+							<span>{{created_at}}</span>
+							<h3>{{from_user_name}}<h3>
+							<p>
+							{{text}}</p>
+						</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</script>
+</div>
+</div>
+</body>
+</html>
